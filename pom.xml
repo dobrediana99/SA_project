@@ -14,8 +14,8 @@
 
     <modules>
         <module>api-service</module>
-        <module>processor-service</module>
-        <module>publisher-service</module>
+        <module>order-service</module>
+        <module>inventory-service</module>
     </modules>
 
     <dependencyManagement>

@@ -31,19 +31,19 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      # Step 4: Build and push Processor Service
-      - name: Build and Push Processor Service
-        working-directory: ./processor-service
-        run: |
-          docker build -t mihaivalentingeorgescu/processor-service:v2 .
-          docker push mihaivalentingeorgescu/processor-service:v2
-
       # Step 5: Build and push API Service
       - name: Build and Push API Service
         working-directory: ./api-service
         run: |
           docker build -t mihaivalentingeorgescu/api-service:v2 .
           docker push mihaivalentingeorgescu/api-service:v2
+
+      # Step 4: Build and push Processor Service
+      - name: Build and Push Processor Service
+        working-directory: ./processor-service
+        run: |
+          docker build -t mihaivalentingeorgescu/processor-service:v2 .
+          docker push mihaivalentingeorgescu/processor-service:v2
 
       # Step 6: Build and push Publisher Service
       - name: Build and Push Publisher Service

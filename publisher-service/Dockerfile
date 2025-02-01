@@ -23,4 +23,4 @@ RUN mvn clean install
 
 EXPOSE 8082
 
-ENTRYPOINT ["mvn", "exec:java", "-Dexec.mainClass=com.example.api.Application"]
+ENTRYPOINT ["mvn", "exec:java", "-Dexec.mainClass=com.example.publisher.Application"]

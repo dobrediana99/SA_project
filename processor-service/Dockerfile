@@ -17,10 +17,10 @@ WORKDIR /app
 # Clone the repository containing the parent POM or project code
 RUN git clone https://github.com/dobrediana99/SA_project.git SA_project
 
-WORKDIR /app/SA_project/processir-service
+WORKDIR /app/SA_project/processor-service
 
 RUN mvn clean install
 
 EXPOSE 8081
 
-ENTRYPOINT ["mvn", "exec:java", "-Dexec.mainClass=com.example.api.Application"]
+ENTRYPOINT ["mvn", "exec:java", "-Dexec.mainClass=com.example.processor.Application"]

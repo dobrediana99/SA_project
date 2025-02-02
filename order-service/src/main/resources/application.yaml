@@ -11,5 +11,13 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:9092
-    topic: order-events
-
+    consumer:
+      group-id: inventory-service-group   # Ensure a unique group for inventory service consumers
+      auto-offset-reset: earliest
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    template:
+      default-topic: inventory-events      # This topic can be used when publishing inventory events

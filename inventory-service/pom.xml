@@ -59,6 +59,12 @@
             <version>3.1.4</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+            <version>3.1.0</version>
+            <scope>compile</scope>
+        </dependency>
 
         <!-- Optional: If you need Springdoc OpenAPI (for API documentation) -->
         <!--

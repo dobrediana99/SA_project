@@ -16,7 +16,9 @@ import lombok.NoArgsConstructor;
 public class InventoryItem {
 
     @Id
-    private String id; // or use a different type (e.g., Long) if you prefer
+    private Long id; // or use a different type (e.g., Long) if you prefer
 
     private int quantity;
+
+
 }

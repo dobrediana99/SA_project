@@ -1,3 +1,7 @@
+# Server port configuration
+server:
+  port: 8082
+
 spring:
   datasource:
     url: jdbc:mysql://localhost:3306/project
@@ -11,13 +15,16 @@ spring:
 
   kafka:
     bootstrap-servers: localhost:9092
+
     consumer:
-      group-id: inventory-service-group   # Ensure a unique group for inventory service consumers
+      group-id: management-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+
     producer:
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      key-serializer: org.apache.kafka.common.serialization.LongSerializer
       value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
     template:
-      default-topic: inventory-events      # This topic can be used when publishing inventory events
+      default-topic: navigation-data

@@ -6,6 +6,7 @@ import org.mockito.Mockito;
 import java.util.List;
 
 class NotificationServiceTest {
+
     @Test
     void testNotify() {
         // Create a mock NotificationListener

@@ -35,15 +35,18 @@ public class OrderService {
         Order order = repository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Order not found"));
 
-        order.setCustomerName(order.getCustomerName());
-        order.setTotalAmount(order.getTotalAmount());
         order.setStatus(status);
         Order updatedOrder = repository.save(order);
 
         kafkaProducer.publishOrderEvent(updatedOrder);
 
+        if ("COMPLETED".equalsIgnoreCase(status)) {
+            kafkaProducer.publishInventoryUpdate(order.getId(), order.getItemName(),  order.getTotalAmount());
+        }
+
         return mapToDTO(updatedOrder);
     }
+
 
     public void completeOrder(Long id) {
         if (!repository.existsById(id)) {

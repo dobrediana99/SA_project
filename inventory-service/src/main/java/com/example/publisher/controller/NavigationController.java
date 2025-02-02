@@ -34,7 +34,7 @@ public class NavigationController {
     @PutMapping("/{itemId}")
     public ResponseEntity<InventoryItem> updateStock(@PathVariable Long itemId,@RequestBody InventoryDTO inventoryDTO) {
         InventoryItem item = inventoryRepository.findById(itemId).orElseThrow(() -> new ResourceNotFoundException("itemId:" + itemId));
-        item.setQuantity(inventoryDTO.getQuantity());
+        item.setTotalAmount(inventoryDTO.getTotalAmount());
         item.setItemName(inventoryDTO.getItemName());
         item.setId(inventoryDTO.getId());
         InventoryItem savedItem = inventoryRepository.save(item);

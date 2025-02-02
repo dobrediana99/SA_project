@@ -13,6 +13,6 @@ public class Order {
 
     private String customerName;
     private String itemName;
-    private Double totalAmount;
+    private int totalAmount;
     private String status;
 }

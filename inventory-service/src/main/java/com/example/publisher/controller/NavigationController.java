@@ -14,7 +14,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/inventory")
 @RequiredArgsConstructor
-public class NavigationController {  // Renamed from NavigationController
+public class NavigationController {
 
     private final InventoryService inventoryService;
 

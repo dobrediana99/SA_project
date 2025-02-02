@@ -9,14 +9,14 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "inventory_items") // Optional: specify the table name
+@Table(name = "inventory_items")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class InventoryItem {
 
     @Id
-    private Long id; // or use a different type (e.g., Long) if you prefer
+    private Long id;
 
     private int quantity;
 

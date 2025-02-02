@@ -20,12 +20,10 @@ public class InventoryService {
     private final InventoryRepository inventoryRepository;
     private final KafkaTemplate<Long, String> kafkaTemplate;
 
-    // Retrieve all inventory items from the database
     public List<InventoryItem> getAllItems() {
         return inventoryRepository.findAll();
     }
 
-    // Update the stock for an item and then publish an inventory event
     public InventoryItem updateStock(Long itemId, int newQuantity) {
         InventoryItem item = inventoryRepository.findById(itemId)
                 .orElse(new InventoryItem(itemId, 0));
@@ -42,7 +40,6 @@ public class InventoryService {
         return mapToDTO(saveditem);
     }
 
-    // Called by the Kafka consumer when an order event is received
     public void adjustStockBasedOnOrder(Long itemId, int quantityOrdered) {
         InventoryItem item = inventoryRepository.findById(itemId)
                 .orElse(new InventoryItem(itemId, 0));

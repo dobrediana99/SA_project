@@ -4,7 +4,8 @@ import lombok.Data;
 
 @Data
 public class OrderEvent {
-    private Long itemId;
+    private long id;
+    private String customerName;
     private String itemName;
-    private int quantity;
+    private int totalAmount;
 }

@@ -20,7 +20,7 @@ public class OrderEventConsumer {
         try {
             OrderEvent orderEvent = JsonUtil.fromJson(orderEventJson, OrderEvent.class);
             if (orderEvent != null) {
-                inventoryService.adjustStockBasedOnOrder(orderEvent.getItemId(), orderEvent.getItemName() ,orderEvent.getQuantity());
+                inventoryService.adjustStockBasedOnOrder(orderEvent.getItemName() ,orderEvent.getTotalAmount());
             } else {
                 log.error("Failed to deserialize order event");
             }

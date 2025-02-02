@@ -7,6 +7,6 @@ public class OrderResponseDTO {
     private Long id;
     private String customerName;
     private String itemName;
-    private Double totalAmount;
+    private int totalAmount;
     private String status;
 }

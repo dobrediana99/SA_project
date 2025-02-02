@@ -7,7 +7,7 @@ public class InventoryFactory {
         InventoryItem inventoryItem = new InventoryItem();
         inventoryItem.setId(inventoryDTO.getId());
         inventoryItem.setItemName(inventoryDTO.getItemName());
-        inventoryItem.setQuantity(inventoryDTO.getQuantity());
+        inventoryItem.setTotalAmount(inventoryDTO.getTotalAmount());
         return inventoryItem;
     }
 }

@@ -18,7 +18,7 @@ public class InventoryItem {
     @Id
     private Long id;
     private String itemName;
-    private int quantity;
+    private int totalAmount;
 
 
 }

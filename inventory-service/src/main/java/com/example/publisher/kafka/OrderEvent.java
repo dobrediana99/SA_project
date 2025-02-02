@@ -8,4 +8,5 @@ public class OrderEvent {
     private String customerName;
     private String itemName;
     private int totalAmount;
+    private String status;
 }

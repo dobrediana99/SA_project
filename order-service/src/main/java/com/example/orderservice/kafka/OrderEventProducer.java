@@ -17,8 +17,12 @@ public class OrderEventProducer {
     }
 
     public void publishOrderEvent(Order order) {
-        String message = String.format("Order created: %s", order);
-        kafkaTemplate.send("order-events", message);
+        try {
+            String message = objectMapper.writeValueAsString(order);  // Convert to proper JSON
+            kafkaTemplate.send("order-events", String.valueOf(order.getId()), message);
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to serialize order event", e);
+        }
     }
     public void publishInventoryUpdate(Long orderId, String itemName, int quantityOrdered) {
         try {

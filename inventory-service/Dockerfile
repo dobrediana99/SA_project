@@ -17,7 +17,7 @@ WORKDIR /app
 # Clone the repository containing the parent POM or project code
 RUN git clone https://github.com/dobrediana99/SA_project.git SA_project
 
-WORKDIR /app/SA_project/publisher-service
+WORKDIR /app/SA_project/inventory-service
 
 RUN mvn clean install
 

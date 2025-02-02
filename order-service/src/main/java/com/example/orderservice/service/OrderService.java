@@ -45,17 +45,18 @@ public class OrderService {
         return mapToDTO(updatedOrder);
     }
 
-    public void deleteOrder(Long id) {
+    public void completeOrder(Long id) {
         if (!repository.existsById(id)) {
             throw new RuntimeException("Order not found");
         }
 
-        repository.deleteById(id); // Delete the order
+        repository.deleteById(id);
     }
 
     private OrderResponseDTO mapToDTO(Order order) {
         OrderResponseDTO dto = new OrderResponseDTO();
         dto.setId(order.getId());
+        dto.setItemName(order.getItemName());
         dto.setCustomerName(order.getCustomerName());
         dto.setTotalAmount(order.getTotalAmount());
         dto.setStatus(order.getStatus());

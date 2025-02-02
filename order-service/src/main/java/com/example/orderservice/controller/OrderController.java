@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 public class OrderController {
     private final OrderService service;
 
+
     public OrderController(OrderService service) {
         this.service = service;
     }
@@ -30,7 +31,8 @@ public class OrderController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteOrder(@PathVariable Long id) {
-        service.deleteOrder(id);
+    public void completeOrder(@PathVariable Long id) {
+        service.completeOrder(id);
+
     }
 }

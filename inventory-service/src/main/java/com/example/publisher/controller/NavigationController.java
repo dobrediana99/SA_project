@@ -2,9 +2,11 @@ package com.example.publisher.controller;
 
 import com.example.publisher.dto.InventoryDTO;
 import com.example.publisher.model.InventoryItem;
+import com.example.publisher.repository.InventoryRepository;
 import com.example.publisher.service.InventoryService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.kafka.common.errors.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -17,8 +19,8 @@ import java.util.List;
 public class NavigationController {
 
     private final InventoryService inventoryService;
+    private final InventoryRepository inventoryRepository;
 
-    // GET endpoint to list all inventory items
     @GetMapping
     public ResponseEntity<List<InventoryItem>> getInventory() {
         return ResponseEntity.ok(inventoryService.getAllItems());
@@ -29,12 +31,14 @@ public class NavigationController {
         return inventoryService.addItem(inventoryDTO);
     }
 
-    // PUT endpoint to update stock for a given item
     @PutMapping("/{itemId}")
-    public ResponseEntity<InventoryItem> updateStock(@PathVariable Long itemId,
-                                                     @RequestBody int newQuantity) {
-        InventoryItem updatedItem = inventoryService.updateStock(itemId, newQuantity);
-        return ResponseEntity.ok(updatedItem);
+    public ResponseEntity<InventoryItem> updateStock(@PathVariable Long itemId,@RequestBody InventoryDTO inventoryDTO) {
+        InventoryItem item = inventoryRepository.findById(itemId).orElseThrow(() -> new ResourceNotFoundException("itemId:" + itemId));
+        item.setQuantity(inventoryDTO.getQuantity());
+        item.setItemName(inventoryDTO.getItemName());
+        item.setId(inventoryDTO.getId());
+        InventoryItem savedItem = inventoryRepository.save(item);
+        return ResponseEntity.ok(savedItem);
     }
 
     @DeleteMapping("/{itemId}")

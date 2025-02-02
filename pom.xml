@@ -13,8 +13,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>api-service</module>
         <module>order-service</module>
+        <module>notification-service</module>
         <module>inventory-service</module>
     </modules>
 

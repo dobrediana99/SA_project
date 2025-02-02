@@ -6,6 +6,7 @@ public class InventoryFactory {
     public static InventoryItem createInventoryDTO(InventoryDTO inventoryDTO) {
         InventoryItem inventoryItem = new InventoryItem();
         inventoryItem.setId(inventoryDTO.getId());
+        inventoryItem.setItemName(inventoryDTO.getItemName());
         inventoryItem.setQuantity(inventoryDTO.getQuantity());
         return inventoryItem;
     }

@@ -24,14 +24,6 @@ public class InventoryService {
         return inventoryRepository.findAll();
     }
 
-    public InventoryItem updateStock(Long itemId, int newQuantity) {
-        InventoryItem item = inventoryRepository.findById(itemId)
-                .orElse(new InventoryItem(itemId, 0));
-        item.setQuantity(newQuantity);
-        InventoryItem savedItem = inventoryRepository.save(item);
-        sendInventoryEvent(savedItem);
-        return savedItem;
-    }
 
     public InventoryDTO addItem(InventoryDTO dto) {
         InventoryItem item = InventoryFactory.createInventoryDTO(dto);
@@ -40,9 +32,9 @@ public class InventoryService {
         return mapToDTO(saveditem);
     }
 
-    public void adjustStockBasedOnOrder(Long itemId, int quantityOrdered) {
+    public void adjustStockBasedOnOrder(Long itemId,String itemName, int quantityOrdered) {
         InventoryItem item = inventoryRepository.findById(itemId)
-                .orElse(new InventoryItem(itemId, 0));
+                .orElse(new InventoryItem(itemId, itemName, 0));
         int updatedQuantity = item.getQuantity() - quantityOrdered;
         item.setQuantity(updatedQuantity);
         InventoryItem savedItem = inventoryRepository.save(item);
@@ -57,7 +49,7 @@ public class InventoryService {
     }
     public void deleteItem(Long id) {
         if (!inventoryRepository.existsById(id)) {
-            throw new RuntimeException("Order not found");
+            throw new RuntimeException("Item not found");
         }
 
         inventoryRepository.deleteById(id);
@@ -65,6 +57,7 @@ public class InventoryService {
     private InventoryDTO mapToDTO(InventoryItem order) {
         InventoryDTO dto = new InventoryDTO();
         dto.setId(order.getId());
+        dto.setItemName(order.getItemName());
         dto.setQuantity(order.getQuantity());
         return dto;
     }

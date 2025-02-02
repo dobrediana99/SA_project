@@ -7,5 +7,6 @@ import lombok.Data;
 public class InventoryDTO {
     @Id
     private Long id;
+    private String itemName;
     private int quantity;
 }

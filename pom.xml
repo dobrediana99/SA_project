@@ -13,9 +13,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>api-service</module>
-        <module>processor-service</module>
-        <module>publisher-service</module>
+        <module>order-service</module>
+        <module>notification-service</module>
+        <module>inventory-service</module>
     </modules>
 
     <dependencyManagement>
